@@ -304,7 +304,7 @@ abstract class OpenM_DB {
         $res = $this->request($request);
         $return = new ArrayList("HashtableString");
         while ($row = $this->fetch_array($res)) {
-            $return->add(HashtableString::from($row, "String"));
+            $return->add(HashtableString::from($row));
         }
         return $return;
     }
@@ -327,7 +327,7 @@ abstract class OpenM_DB {
         $res = $this->request($request);
         $return = new HashtableString("HashtableString");
         while ($row = $this->fetch_array($res)) {    
-            $ligne = HashtableString::from($row, "String");
+            $ligne = HashtableString::from($row);
             $return->put($ligne->get($uniqueKey), $ligne);
         }
         return $return;
@@ -348,7 +348,7 @@ abstract class OpenM_DB {
         $res = $this->request($request);
         $return = new HashtableString("ArrayList");
         while ($row = $this->fetch_array($res)) {
-            $ligne = HashtableString::from($row, "String");
+            $ligne = HashtableString::from($row);
             $liste = $return->get($ligne->get($groupBy));
             if ($liste == null) {
                 $liste = new ArrayList("HashtableString");
