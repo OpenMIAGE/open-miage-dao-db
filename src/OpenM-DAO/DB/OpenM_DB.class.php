@@ -87,6 +87,10 @@ abstract class OpenM_DB {
 
     public abstract function escape($string);
 
+    public function unescape($string) {
+        return stripslashes($string);
+    }
+
     /**
      * @desc retourne true si la connexion est établie
      * @name Sql::isConnected()
@@ -326,7 +330,7 @@ abstract class OpenM_DB {
 
         $res = $this->request($request);
         $return = new HashtableString("HashtableString");
-        while ($row = $this->fetch_array($res)) {    
+        while ($row = $this->fetch_array($res)) {
             $ligne = HashtableString::from($row);
             $return->put($ligne->get($uniqueKey), $ligne);
         }
