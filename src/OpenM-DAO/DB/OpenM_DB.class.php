@@ -175,7 +175,7 @@ abstract class OpenM_DB {
 
         $request .= " VALUES (";
         foreach ($values as $value) {
-            $request .= (is_numeric($value) ? "$value" : "'$value'") . ", ";
+            $request .= ((is_numeric($value) && !is_string($value)) ? "$value" : "'$value'") . ", ";
         }
         $request = substr($request, 0, -2) . ") ";
         OpenM_Log::debug("insert=$request", __CLASS__, __METHOD__, __LINE__);
